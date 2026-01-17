@@ -2,10 +2,10 @@
 let
   custom = {
     font = "Maple Mono";
-    font_size = "18px";
+    font_size = "14px";
     font_weight = "bold";
     text_color = "#FBF1C7";
-    background_0 = "#1D2021";
+    background_0 = "#1D2020";
     background_1 = "#282828";
     border_color = "#A89984";
     red = "#CC241D";

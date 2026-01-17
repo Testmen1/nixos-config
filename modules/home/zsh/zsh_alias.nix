@@ -6,11 +6,11 @@
       c = "clear";
       cd = "z";
       tt = "gtrash put";
-      cat = "bat";
-      nano = "micro";
+      # cat = "bat";
+      # nano = "micro";
       code = "codium";
       diff = "delta --diff-so-fancy --side-by-side";
-      less = "bat";
+      # less = "bat";
       copy = "wl-copy";
       f = "superfile";
       py = "python";
@@ -20,7 +20,7 @@
       pdf = "tdf";
       open = "xdg-open";
       space = "ncdu";
-      man = "batman";
+      # man = "batman";
 
       l = "eza --icons -a --group-directories-first -1 --no-user --long"; # EZA_ICON_SPACING=2
       tree = "eza --icons --tree --group-directories-first";
