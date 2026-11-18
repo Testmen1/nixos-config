@@ -1,4 +1,4 @@
-name: Fetch and Split Qwen 9B
+name: Fetch and Split Qwen 3.5 9B
 on: workflow_dispatch
 
 jobs:
@@ -7,9 +7,15 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Download GGUF from Hugging Face
-        # (Remplacez l'URL par le lien de téléchargement direct exact du fichier Q6_K)
-        run: wget -O model.gguf https://huggingface.co/Smoffyy/Qwen3.5-9B-Instruct-Pure-GGUF/resolve/main/qwen3.5-9b-instruct-pure-q6_k.gguf
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          df -h
+
+      - name: Download Instruct GGUF
+        run: wget -O model.gguf https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q4_K_M.gguf
         
       - name: Split into 1.9GB chunks
         run: split -b 1900M model.gguf qwen_part_
@@ -17,5 +23,5 @@ jobs:
       - name: Create Release and Upload
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "qwen-9b-parts"
+          tag_name: "qwen-3.5-9b-instruct"
           files: qwen_part_*
