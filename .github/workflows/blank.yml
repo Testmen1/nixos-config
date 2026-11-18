@@ -1,4 +1,4 @@
-name: Fetch Qwen Model
+name: Fetch and Split Qwen 9B
 on: workflow_dispatch
 
 jobs:
@@ -8,10 +8,14 @@ jobs:
       contents: write
     steps:
       - name: Download GGUF from Hugging Face
-        run: wget -O model.gguf https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct-GGUF/resolve/main/qwen2.5-coder-3b-instruct-q4_k_m.gguf
+        # (Remplacez l'URL par le lien de téléchargement direct exact du fichier Q6_K)
+        run: wget -O model.gguf https://huggingface.co/Smoffyy/Qwen3.5-9B-Instruct-Pure-GGUF/resolve/main/qwen3.5-9b-instruct-pure-q6_k.gguf
+        
+      - name: Split into 1.9GB chunks
+        run: split -b 1900M model.gguf qwen_part_
         
       - name: Create Release and Upload
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "qwen-3b-q4"
-          files: model.gguf
+          tag_name: "qwen-9b-parts"
+          files: qwen_part_*
